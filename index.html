@@ -10,6 +10,32 @@
 </style>
 
 <script>
+  const saveMessage = 'pepperoni pizza';
+  const cancelMessage = 'loser';
+
+  const num = -123.09826345;
+  const trueOrFalse = true;
+  const falseOrTrue = false;
+
+  const animals = ['lion', 'tiger', 'trout'];
+
+  const message = {
+    save: saveMessage,
+    cancel: cancelMessage,
+
+    getSaveMsg: function() {
+      return this.save;
+    },
+
+    getCancelMsg: function() {
+      return this.cancel;
+    },
+
+    setCancelMsg: function(newCancel) {
+      this.cancel = newCancel;
+    }
+  }
+  
   function handleClick(str) {
     alert(str);
   }
@@ -26,6 +52,7 @@
 </div>
 
 <div>
-  <button onclick="handleClick('peperoni pizza')">save</button>
-  <button onclick="handleCancel('loser')">cancel</button>
+  <button onclick="handleClick(message.getSaveMsg())">save</button>
+  <button onclick="handleCancel(message.getCancelMsg())">cancel</button>
+  <button onclick="message.setCancelMsg('bummer')">New Cancel</button>
 </div>
