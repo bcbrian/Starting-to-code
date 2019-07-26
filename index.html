@@ -26,6 +26,21 @@
     color: black;
   }
 
+  .message {
+    display: none;
+  }
+
+  .save {
+    display: block;
+    color: aqua;
+  }
+
+  .cancel {
+    display: block;
+    background: darkred;
+    color: white;
+  }
+
 </style>
 
 <script>
@@ -54,29 +69,43 @@
     }
   }
   
-  function handleClick(str) {
-    alert(str);
+  function handleClick() {
+    const input = document.getElementById('newCancelInput');
+
+    const messageEl = document.querySelector('.message');
+    messageEl.innerHTML = message.getSaveMsg();
+    messageEl.classList.add('save');
+    messageEl.classList.remove('cancel');
+
+    cancelMsgs.push(input.value);
   }
 
   function handleCancel(str) {
-    console.log(str);
+    const messageEl = document.querySelector('.message');
+    messageEl.innerHTML = str;
+    messageEl.classList.add('cancel');
+    messageEl.classList.remove('save');
   }
 
   function randomizeCancel() {
-    const randNum = Math.floor(Math.random() * 3);
+    const randNum = Math.floor(Math.random() * cancelMsgs.length);
     const randMsg = cancelMsgs[randNum];
     message.setCancelMsg(randMsg);
   }
 </script>
 
-<div>Name</div>
+<div>New cancel message</div>
 
 <div>
-  <input />
+  <input id="newCancelInput"/>
 </div>
 
 <div>
-  <button class="btn primary" onclick="handleClick(message.getSaveMsg())">save</button>
+  <button class="btn primary" onclick="handleClick()">save</button>
   <button class="btn secondary" onclick="handleCancel(message.getCancelMsg())">cancel</button>
   <button class="btn secondary" onclick="randomizeCancel()">shuffle cancel</button>
+</div>
+
+<div class="message">
+
 </div>
